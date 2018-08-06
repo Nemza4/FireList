@@ -4,26 +4,41 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import {AngularFireModule} from 'angularfire2';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { AngularFireDatabaseModule,AngularFireDatabase} from 'angularfire2/database'; 
+
+var config = {
+  apiKey: "AIzaSyD2_WFneyd554fmghyiABxcANm3npw_Ql0",
+  authDomain: "firelist-ca17e.firebaseapp.com",
+  databaseURL: "https://firelist-ca17e.firebaseio.com",
+  projectId: "firelist-ca17e",
+  storageBucket: "firelist-ca17e.appspot.com",
+  messagingSenderId: "608896352875"
+};
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+   
   ],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
+  
+BrowserModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
